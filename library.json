@@ -1,0 +1,12 @@
+{
+    "id": "{4A64F6FB-49D7-4F9C-1F6D-095FDEB35DD4}",
+    "name": "MQTT Push",
+    "author": "Michael Maroszek",
+    "url": "https://www.maroszek.de",
+    "compatibility": {
+        "version": "7.1"
+    },
+    "version": "1.0",
+    "build": 0,
+    "date": 0
+}
