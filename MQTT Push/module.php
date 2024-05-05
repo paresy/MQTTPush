@@ -81,18 +81,18 @@ class MQTTPush extends IPSModuleStrict
         }
     }
 
-    private function GetLocation($id)
+    private function GetLocation($id): string
     {
         $name = str_replace("/", "", IPS_GetName($id));
         if ($id > 0) {
-            return $this->GetLocation(IPS_GetParent($id)) . "/" . $name;
+            return $this->GetLocation(IPS_GetParent($id)) . "/" . $name . " (" . $id . ")";
         }
         else {
             return $name;
         }
     }
 
-    private function Send(string $Topic, string $Payload)
+    private function Send(string $Topic, string $Payload): void
     {
         $baseTopic = $this->ReadPropertyString("BaseTopic");
 
