@@ -36,6 +36,13 @@ class MQTTPushInstances extends IPSModuleStrict
                     $send($id);
 
                     if (IPS_InstanceExists($id)) {
+                        // Skip over non device instances
+                        $i = IPS_GetInstance($id);
+                        if ($i["ModuleInfo"]["ModuleType"] != MODULETYPE_DEVICE) {
+                            continue;
+                        }
+
+                        // Variable to hold all of our values that have an ident
                         $values = [];
 
                         $subids = IPS_GetChildrenIDs($id);
