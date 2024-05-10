@@ -101,6 +101,7 @@ class MQTTPushVariables extends IPSModuleStrict
         $packet['Topic'] = $baseTopic . $Topic;
         $packet['Payload'] = bin2hex($Payload);
 
+        $this->SendDebug($Topic, $Payload, 0);
         $this->SendDataToParent(json_encode($packet));
     }
 }

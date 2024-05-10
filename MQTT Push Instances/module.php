@@ -110,8 +110,6 @@ class MQTTPushInstances extends IPSModuleStrict
 
     private function Send(string $Topic, string $Payload): void
     {
-        $this->SendDebug($Topic, $Payload, 0);
-
         $baseTopic = $this->ReadPropertyString("BaseTopic");
 
         // Append slash if not already given and base topic is not empty
@@ -126,6 +124,7 @@ class MQTTPushInstances extends IPSModuleStrict
         $packet['Topic'] = $baseTopic . $Topic;
         $packet['Payload'] = bin2hex($Payload);
 
-        //$this->SendDataToParent(json_encode($packet));
+        $this->SendDebug($Topic, $Payload, 0);
+        $this->SendDataToParent(json_encode($packet));
     }
 }
