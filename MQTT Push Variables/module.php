@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-class MQTTPush extends IPSModuleStrict
+class MQTTPushVariables extends IPSModuleStrict
 {
     public function Create(): void
     {
@@ -16,6 +16,16 @@ class MQTTPush extends IPSModuleStrict
         //Never delete this line!
         parent::ApplyChanges();
 
+        $this->UpdateSubscription();
+    }
+
+    public function ReceiveData($JSONString): string
+    {
+        return "";
+    }
+
+    public function UpdateSubscription(): void
+    {
         //Delete all registrations in order to readd them
         foreach ($this->GetMessageList() as $senderID => $messages) {
             foreach ($messages as $message) {
@@ -40,23 +50,6 @@ class MQTTPush extends IPSModuleStrict
         $baseID = $this->ReadPropertyInteger("BaseID");
         if ($baseID >= 0) {
             $searchVariables($baseID);
-        }
-    }
-
-    public function ReceiveData($JSONString): string
-    {
-        return "";
-    }
-
-    public function MessageSink(int $TimeStamp, int $SenderID, int $Message, array $Data): void
-    {
-
-        //Never delete this line!
-        parent::MessageSink($TimeStamp, $SenderID, $Message, $Data);
-
-        // Send via MQTT
-        if ($Data[1]) {
-            $this->Send($this->GetLocation($SenderID), GetValueFormattedEx($SenderID, $Data[0]));
         }
     }
 

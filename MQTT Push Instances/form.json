@@ -1,0 +1,28 @@
+{
+    "elements": [
+        {
+            "type": "SelectObject",
+            "name": "BaseID",
+            "caption": "BaseID"
+        },
+        {
+            "type": "ValidationTextBox",
+            "name": "BaseTopic",
+            "caption": "BaseTopic"
+        },
+        {
+            "type": "NumberSpinner",
+            "name": "Interval",
+            "caption": "Interval",
+            "suffix": "minutes"
+        }
+    ],
+    "actions": [
+        {
+            "type": "Button",
+            "caption": "Send everything",
+            "onClick": "MQP_SendSnapshot($id);"
+        }
+    ],
+    "status": []
+}
