@@ -69,8 +69,10 @@ class MQTTPushInstances extends IPSModuleStrict
                         }
 
                         if (count($values) > 0) {
-                            // Special case for out internal SWHL use-case. Put the M-Bus device id into the id field
-                            if (preg_match("/M-Bus .*\((\d+)\)/", IPS_GetName($id), $matches)) {
+                            // Special case for our internal SWHL use-case.
+                            // Read the M-Bus device id from the name into the id field
+                            // See: https://regex101.com/r/Jo3NYG/1
+                            if (preg_match("/M-Bus .*\((\d+), [A-Z]+, .+\)/", IPS_GetName($id), $matches)) {
                                 $deviceID = $matches[1];
                             }
                             else {
