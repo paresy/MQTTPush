@@ -69,7 +69,7 @@ class MQTTPushInstances extends IPSModuleStrict
                                         "name" => $o["ObjectName"],
                                         "value" => GetValue($subid),
                                         "unit" => $unit,
-                                        "timestamp" => date('Y-m-d\TH:i:s.Z\Z', $v["VariableUpdated"]),
+                                        "timestamp" => gmdate('Y-m-d\TH:i:s.Z\Z', $v["VariableUpdated"]),
                                     ];
                                 }
                             }
@@ -89,7 +89,7 @@ class MQTTPushInstances extends IPSModuleStrict
                             // Build content
                             $content = [
                                 "id" => $deviceID,
-                                "timestamp" => date('Y-m-d\TH:i:s.Z\Z', time()),
+                                "timestamp" => gmdate('Y-m-d\TH:i:s.Z\Z', time()),
                                 "payload" => $values,
                             ];
 
